@@ -22,43 +22,50 @@ window.addEventListener("load", () => {
         AOS INITIALIZATION
 ==========================================*/
 
-AOS.init({
+if (window.AOS) {
+    AOS.init({
 
-    duration: 900,
+        duration: 650,
 
-    once: true,
+        once: true,
 
-    offset: 80
+        offset: 70
 
-});
+    });
+}
 
 /*==========================================
             TYPING EFFECT
 ==========================================*/
 
-new Typed(".typing", {
+if (window.Typed) {
+    new Typed(".typing", {
 
-    strings: [
+        strings: [
 
-        "AI Enthusiast",
+            "AI Enthusiast",
 
-        "AI Full Stack Developer",
+            "AI Full Stack Developer",
 
-        "Aspiring Software Engineer",
+            "Aspiring Software Engineer",
 
-        "Aspiring AI/ML Engineer"
+            "Aspiring AI/ML Engineer"
 
-    ],
+        ],
 
-    typeSpeed: 70,
+        typeSpeed: 60,
 
-    backSpeed: 45,
+        backSpeed: 38,
 
-    backDelay: 1500,
+        backDelay: 1400,
 
-    loop: true
+        loop: true
 
-});
+    });
+} else {
+    const typing = document.querySelector(".typing");
+    if (typing) typing.textContent = "AI Full Stack Developer";
+}
 
 /*==========================================
         CUSTOM CURSOR (disabled — using native cursor)
@@ -154,21 +161,23 @@ document.querySelectorAll('a[href^="#"]')
         HERO IMAGE TILT
 ==========================================*/
 
-VanillaTilt.init(
+if (window.VanillaTilt) {
+    VanillaTilt.init(
 
-    document.querySelectorAll(".hero-panel"),
+        document.querySelectorAll(".hero-panel"),
 
-{
+    {
 
-    max:18,
+        max:8,
 
-    speed:500,
+        speed:500,
 
-    glare:true,
+        glare:true,
 
-    "max-glare":0.25
+        "max-glare":0.08
 
-});
+    });
+}
 
 
 /*==========================================
@@ -185,6 +194,7 @@ const counterObserver = new IntersectionObserver((entries) => {
 
         const counter = entry.target;
         const target = parseFloat(counter.dataset.target);
+        const suffix = counter.dataset.suffix || "";
 
         let count = 0;
 
@@ -199,7 +209,7 @@ const counterObserver = new IntersectionObserver((entries) => {
                 counter.innerHTML =
                     target % 1 !== 0
                     ? count.toFixed(1)
-                    : Math.ceil(count);
+                    : Math.ceil(count) + suffix;
 
                 requestAnimationFrame(update);
 
@@ -208,7 +218,7 @@ const counterObserver = new IntersectionObserver((entries) => {
                 counter.innerHTML =
                     target % 1 !== 0
                     ? target.toFixed(1)
-                    : target;
+                    : target + suffix;
 
             }
 
@@ -310,15 +320,15 @@ window.addEventListener("scroll",()=>{
 
     if(window.scrollY>80){
 
-        header.style.background="rgba(5,8,22,.9)";
+        header.style.background="rgba(255,255,255,.92)";
 
-        header.style.boxShadow="0 8px 25px rgba(0,0,0,.3)";
+        header.style.boxShadow="0 12px 32px rgba(190,24,93,.10)";
 
     }
 
     else{
 
-        header.style.background="rgba(8,10,25,.55)";
+        header.style.background="rgba(255,255,255,.78)";
 
         header.style.boxShadow="none";
 
@@ -421,7 +431,9 @@ item.style.transform=
         EMAIL JS — CHANGE 3: Activated
 ==========================================*/
 
-emailjs.init("bfiY1iIXkPc2o1m8Y"); /* Replace with your EmailJS public key */
+if (window.emailjs) {
+    emailjs.init("bfiY1iIXkPc2o1m8Y"); /* Replace with your EmailJS public key */
+}
 
 (function(){
 
@@ -442,7 +454,7 @@ emailjs.init("bfiY1iIXkPc2o1m8Y"); /* Replace with your EmailJS public key */
             padding:16px 28px;border-radius:14px;font-weight:600;
             font-size:15px;color:#fff;
             background:${success
-                ? "linear-gradient(135deg,#22D3EE,#8B5CF6)"
+                ? "linear-gradient(135deg,#be185d,#f472b6)"
                 : "linear-gradient(135deg,#ef4444,#b91c1c)"};
             box-shadow:0 10px 30px rgba(0,0,0,.4);
             transition:opacity .4s;
@@ -479,7 +491,7 @@ emailjs.init("bfiY1iIXkPc2o1m8Y"); /* Replace with your EmailJS public key */
             this
         )
         .then(()=>{
-            showToast("Message sent successfully! 🎉", true);
+            showToast("Message sent successfully!", true);
             form.reset();
         })
         .catch(()=>{
@@ -498,6 +510,6 @@ emailjs.init("bfiY1iIXkPc2o1m8Y"); /* Replace with your EmailJS public key */
         CONSOLE MESSAGE
 ==========================================*/
 
-console.log("%cWelcome Recruiter 👋","color:#22D3EE;font-size:22px;font-weight:bold;");
+console.log("%cWelcome Recruiter","color:#be185d;font-size:22px;font-weight:bold;");
 
-console.log("%cPortfolio developed by Vinaya V.","color:#8B5CF6;font-size:16px;");
+console.log("%cPortfolio developed by Vinaya V.","color:#db2777;font-size:16px;");
